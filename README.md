@@ -1,10 +1,10 @@
-# Circuit Coach 🏋️
+# Circuit Coach ⚡ Streator Sparks
 
 A self-service bodyweight circuit timer for my athletes, made to run on an iPad.
 
 - The whole circuit stays on screen the entire time
 - Each move has an animated demo
-- The timer colors are big and easy to read: **yellow** = get ready, **red** = work, **teal** = rest
+- Streator Sparks colors: **white** = get ready, **gold** = work, **sky blue** = rest
 - It beeps for 3-2-1 and when a new exercise starts
 - The screen stays awake while the timer runs
 

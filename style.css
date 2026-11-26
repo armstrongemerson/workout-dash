@@ -1,14 +1,14 @@
 /* Layout: iPad landscape = big "stage" on the left, the full circuit list always visible on the right.
-   One deliberate dark "gym scoreboard" look so it reads from across the room. */
+   One deliberate dark "gym scoreboard" look in Streator Sparks colors so it reads from across the room. */
 :root {
-  --floor: #0E1726;   /* page background */
-  --panel: #16233A;   /* cards */
-  --line:  #2A3B58;   /* borders */
-  --chalk: #F2F5FA;   /* main text */
-  --muted: #9AABC6;   /* secondary text */
-  --work:  #FF5A4E;   /* WORK phase */
-  --rest:  #2EC4B6;   /* REST phase */
-  --ready: #FFC145;   /* GET READY phase */
+  --floor: #0B1236;   /* page background (Sparks navy) */
+  --panel: #142050;
+  --line:  #2C3E78;   /* borders */
+  --chalk: #FFFFFF;   /* main text */
+  --muted: #A9C4E6;   /* secondary text */
+  --work:  #FDB515;   /* WORK phase (Sparks gold) */
+  --rest:  #56A3D9;   /* REST phase (Sparks sky blue) */
+  --ready: #FFFFFF;   /* GET READY phase */
   --phase: var(--ready);
   --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
   --body: "Barlow", system-ui, -apple-system, sans-serif;
@@ -41,7 +41,7 @@ body {
 /* ---------- top bar ---------- */
 .topbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
 .brand { font-family: var(--display); font-weight: 800; font-size: 28px; letter-spacing: .04em; text-transform: uppercase; margin: 0; }
-.brand span { color: var(--work); }
+.brand img { display: block; height: 64px; width: auto; max-width: 60vw; }
 .picker { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 15px; }
 select {
   font: inherit; font-size: 18px; color: var(--chalk);
