@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Circuit Coach</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!-- These make it open full-screen like an app after "Add to Home Screen" on iPad -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Circuit Coach">
+<meta name="theme-color" content="#0E1726">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <h1 class="brand">Circuit <span>Coach</span></h1>
+    <label class="picker" for="picker">Workout
+      <select id="picker"></select>
+    </label>
+    <div class="round" id="round" aria-live="polite"></div>
+  </header>
+
+  <main class="main">
+    <section class="stage" id="stage" aria-live="polite">
+      <div class="phase">
+        <span class="phase-label" id="phaseLabel">Get ready</span>
+        <h2 class="ex-name" id="exName">Jumping Jacks</h2>
+      </div>
+      <div class="figure">
+        <img id="gif" src="gifs/jumping-jacks.svg" alt="Exercise demo">
+        <ul class="cues" id="cues"></ul>
+      </div>
+      <div class="clock">
+        <div class="ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="track" cx="60" cy="60" r="54"></circle>
+            <circle class="bar" id="bar" cx="60" cy="60" r="54"></circle>
+          </svg>
+          <div class="time" id="time">10</div>
+        </div>
+        <p class="next" id="next"></p>
+      </div>
+    </section>
+
+    <aside class="list">
+      <h2>Today's circuit</h2>
+      <p class="settings" id="settings"></p>
+      <ol id="list"></ol>
+    </aside>
+  </main>
+
+  <footer class="controls">
+    <button id="resetBtn" type="button">Reset</button>
+    <button id="startBtn" type="button" class="primary">Start</button>
+    <button id="skipBtn" type="button">Skip</button>
+    <button id="soundBtn" type="button" aria-pressed="true">Sound on</button>
+  </footer>
+</div>
+<script src="workout.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+/* Layout: iPad landscape = big "stage" on the left, the full circuit list always visible on the right.
+   One deliberate dark "gym scoreboard" look so it reads from across the room. */
+:root {
+  --floor: #0E1726;   /* page background */
+  --panel: #16233A;   /* cards */
+  --line:  #2A3B58;   /* borders */
+  --chalk: #F2F5FA;   /* main text */
+  --muted: #9AABC6;   /* secondary text */
+  --work:  #FF5A4E;   /* WORK phase */
+  --rest:  #2EC4B6;   /* REST phase */
+  --ready: #FFC145;   /* GET READY phase */
+  --phase: var(--ready);
+  --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "Barlow", system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--floor);
+  color: var(--chalk);
+  font-family: var(--body);
+  font-size: 18px;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 16px;
+  padding-block: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- top bar ---------- */
+.topbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.brand { font-family: var(--display); font-weight: 800; font-size: 28px; letter-spacing: .04em; text-transform: uppercase; margin: 0; }
+.brand span { color: var(--work); }
+.picker { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 15px; }
+select {
+  font: inherit; font-size: 18px; color: var(--chalk);
+  background: var(--panel); border: 2px solid var(--line); border-radius: 10px;
+  padding: 8px 12px; min-height: 48px;
+}
+.round {
+  margin-left: auto; font-family: var(--display); font-size: 26px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase; font-variant-numeric: tabular-nums;
+}
+.round small { color: var(--muted); font-size: 16px; margin-right: 6px; }
+
+/* ---------- main ---------- */
+.main { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 16px; min-height: 0; }
+
+.stage {
+  background: var(--panel);
+  border: 3px solid var(--phase);
+  border-radius: 20px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  gap: 12px 24px;
+  transition: border-color .3s;
+  min-width: 0;
+}
+.phase {
+  grid-column: 1 / -1;
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 16px;
+}
+.phase-label {
+  font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--floor); background: var(--phase);
+  padding: 4px 14px; border-radius: 8px;
+}
+.ex-name {
+  font-family: var(--display); font-weight: 800; text-transform: uppercase;
+  font-size: clamp(40px, 6vw, 72px); line-height: 1; margin: 0; text-wrap: balance;
+}
+.figure { display: grid; place-items: center; min-height: 0; }
+.figure img { width: 100%; max-width: 420px; max-height: 46vh; aspect-ratio: 1; object-fit: contain; }
+.cues { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 8px 0 0; padding: 0; list-style: none; }
+.cues li { border: 2px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 18px; }
+
+.clock { display: grid; justify-items: center; align-content: center; gap: 8px; }
+.ring { width: min(34vw, 300px); aspect-ratio: 1; position: relative; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 10; }
+.ring .track { stroke: var(--line); }
+.ring .bar { stroke: var(--phase); stroke-linecap: round; transition: stroke .3s; }
+.time {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--display); font-weight: 800; font-size: clamp(64px, 11vw, 130px);
+  font-variant-numeric: tabular-nums; line-height: 1;
+}
+.next { color: var(--muted); font-size: 17px; text-align: center; }
+.next b { color: var(--chalk); }
+
+/* ---------- circuit list (always visible) ---------- */
+.list {
+  background: var(--panel); border: 2px solid var(--line); border-radius: 20px;
+  padding: 16px; display: flex; flex-direction: column; gap: 8px; min-width: 0; overflow: auto;
+}
+.list h2 { margin: 0 0 4px; font-family: var(--display); font-size: 20px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.settings { color: var(--muted); font-size: 15px; margin: 0 0 6px; }
+.list ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.list li {
+  display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 12px;
+  padding: 8px 12px 8px 8px; border-radius: 12px; border: 2px solid transparent; background: var(--floor);
+}
+.list li img { width: 56px; height: 56px; }
+.list li .n { font-family: var(--display); font-weight: 700; font-size: 22px; text-transform: uppercase; }
+.list li .tick { font-size: 22px; color: var(--rest); visibility: hidden; }
+.list li.done { opacity: .55; }
+.list li.done .tick { visibility: visible; }
+.list li.now { border-color: var(--phase); background: var(--panel); opacity: 1; }
+
+/* ---------- controls ---------- */
+.controls { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+button {
+  font-family: var(--display); font-weight: 800; font-size: 26px; letter-spacing: .08em; text-transform: uppercase;
+  min-height: 72px; min-width: 140px; padding: 0 28px; border-radius: 16px; cursor: pointer;
+  border: 3px solid var(--line); background: var(--panel); color: var(--chalk);
+}
+button.primary { background: var(--rest); border-color: var(--rest); color: var(--floor); min-width: 220px; }
+button.primary.pause { background: var(--ready); border-color: var(--ready); }
+button:active { transform: scale(.97); }
+button:focus-visible, select:focus-visible { outline: 3px solid var(--chalk); outline-offset: 3px; }
+
+/* ---------- finished screen ---------- */
+.done-banner { text-align: center; display: grid; gap: 8px; place-content: center; grid-column: 1 / -1; }
+.done-banner .big { font-family: var(--display); font-weight: 800; font-size: clamp(56px, 9vw, 110px); color: var(--rest); text-transform: uppercase; line-height: 1; }
+
+/* ---------- phone / iPad portrait ---------- */
+@media (max-width: 900px) {
+  .main { grid-template-columns: 1fr; }
+  .stage { grid-template-columns: 1fr; }
+  .ring { width: min(60vw, 260px); }
+  .figure img { max-height: 32vh; }
+}
+@media (max-width: 480px) {
+  button { min-width: 0; flex: 1 1 40%; font-size: 22px; }
+  button.primary { min-width: 0; flex-basis: 100%; }
+  .round { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
