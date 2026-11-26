@@ -31,6 +31,22 @@ const WORKOUTS = [
     ]
   },
   {
+    name: "Speed Ladder",
+    // Everyone does the same drill: go through the ladder, jog back to the end of the line, repeat.
+    work: 30,           // 30 seconds of drills (fast feet need short bursts)
+    rest: 30,           // 30 seconds to recover and read the next drill
+    roundRest: 60,      // 1 minute water break between rounds
+    rounds: 2,          // about 12 minutes
+    exercises: [
+      { name: "Quick Feet",           gif: "gifs/ladder-quick-feet.svg",     cues: ["One foot in each box", "Light on your toes"], why: "Gold = left foot, blue = right foot" },
+      { name: "Two In",               gif: "gifs/ladder-two-in.svg",         cues: ["Both feet in every box", "Pump your arms"] },
+      { name: "Lateral Two In",       gif: "gifs/ladder-lateral-two-in.svg", cues: ["Face sideways", "Both feet in every box"], why: "First step to the ball on defense" },
+      { name: "Icky Shuffle",         gif: "gifs/ladder-icky-shuffle.svg",   cues: ["In, in, out", "Switch sides every box"] },
+      { name: "In & Outs",            gif: "gifs/ladder-in-outs.svg",        cues: ["Jump in together, jump out wide", "Quiet landings"] },
+      { name: "Lateral In-In-Out-Out",gif: "gifs/ladder-lateral-in-out.svg", cues: ["Stand beside the ladder", "In, in, back, back"], why: "Quick feet for fielding and base running" }
+    ]
+  },
+  {
     name: "Full Body Blast",
     work: 40,
     rest: 20,
