@@ -84,7 +84,7 @@ select {
   font-size: clamp(40px, 6vw, 72px); line-height: 1; margin: 0; text-wrap: balance;
 }
 .figure { display: grid; place-items: center; min-height: 0; }
-.figure img { width: 100%; max-width: 420px; max-height: 46vh; aspect-ratio: 1; object-fit: contain; }
+.figure img { width: 100%; max-width: 420px; max-height: 40vh; aspect-ratio: 1; object-fit: contain; }
 .cues { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 8px 0 0; padding: 0; list-style: none; }
 .cues li { border: 2px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 18px; }
 
@@ -111,10 +111,10 @@ select {
 .settings { color: var(--muted); font-size: 15px; margin: 0 0 6px; }
 .list ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .list li {
-  display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 12px;
+  display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 12px;
   padding: 8px 12px 8px 8px; border-radius: 12px; border: 2px solid transparent; background: var(--floor);
 }
-.list li img { width: 56px; height: 56px; }
+.list li img { width: 48px; height: 48px; }
 .list li .n { font-family: var(--display); font-weight: 700; font-size: 22px; text-transform: uppercase; }
 .list li .tick { font-size: 22px; color: var(--rest); visibility: hidden; }
 .list li.done { opacity: .55; }

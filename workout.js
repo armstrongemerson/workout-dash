@@ -47,6 +47,22 @@ const WORKOUTS = [
     ]
   },
   {
+    name: "Cone Agility",
+    // Everyone does the same drill: run it, jog back to the end of your line, repeat.
+    work: 30,           // 30 seconds of drills (full speed, so keep it short)
+    rest: 30,           // 30 seconds to recover and read the next drill
+    roundRest: 60,      // 1 minute water break between rounds
+    rounds: 2,          // about 12 minutes
+    exercises: [
+      { name: "Zig-Zag",        gif: "gifs/cones-zig-zag.svg",  cues: ["Sprint cone to cone", "Plant your outside foot and cut"], why: "Solid = sprint · dashed = shuffle · dots = backpedal" },
+      { name: "5-10-5 Shuttle", gif: "gifs/cones-5-10-5.svg",   cues: ["Start in the middle", "Touch the line each time"] },
+      { name: "T-Drill",        gif: "gifs/cones-t-drill.svg",  cues: ["Sprint up, shuffle left and right", "Backpedal home"], why: "Infield range: forward, side and back" },
+      { name: "Box Drill",      gif: "gifs/cones-box.svg",      cues: ["Sprint, shuffle, backpedal, shuffle", "Stay low at the corners"] },
+      { name: "Figure 8",       gif: "gifs/cones-figure-8.svg", cues: ["Run tight around the cones", "Lean into the turn"], why: "Practice for rounding the bases" },
+      { name: "Star Drill",     gif: "gifs/cones-star.svg",     cues: ["Sprint out, backpedal back", "Hit all 4 cones"] }
+    ]
+  },
+  {
     name: "Full Body Blast",
     work: 40,
     rest: 20,
