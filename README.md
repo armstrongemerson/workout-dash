@@ -23,7 +23,7 @@ Open **`workout.js`** and edit the words and numbers. That's the only file you n
 
 1. In this repo, go to **Settings → Pages**.
 2. Under **Branch**, choose `main` and `/ (root)`, then click **Save**.
-3. Wait about 1 minute. Your link will be `https://YOUR-USERNAME.github.io/circuit-coach/`.
+3. Wait about 1 minute. Your link will be `https://armstrongemerson.github.io/workout-dash/`.
 
 ## Set up the iPad 📱
 
