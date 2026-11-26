@@ -9,7 +9,8 @@ const $ = (id) => document.getElementById(id);
 const els = {
   picker: $("picker"), round: $("round"), stage: $("stage"), phaseLabel: $("phaseLabel"),
   exName: $("exName"), gif: $("gif"), cues: $("cues"), time: $("time"), bar: $("bar"),
-  next: $("next"), list: $("list"), settings: $("settings"),
+  next: $("next"), list: $("list"), settings: $("settings"), stations: $("stations"),
+  app: document.querySelector(".app"),
   start: $("startBtn"), skip: $("skipBtn"), reset: $("resetBtn"), sound: $("soundBtn")
 };
 
@@ -47,6 +48,17 @@ function loadWorkout(i) {
   els.list.innerHTML = workout.exercises.map((e, n) =>
     `<li data-i="${n}"><img src="${e.gif}" alt=""><span class="n">${e.name}</span><span class="tick" aria-hidden="true">✓</span></li>`
   ).join("");
+
+  // Station mode: show every station at once
+  const isStations = workout.mode === "stations";
+  els.app.classList.toggle("is-stations", isStations);
+  els.stations.hidden = !isStations;
+  els.stations.innerHTML = isStations ? workout.exercises.map((e, n) =>
+    `<li><span class="num">${n + 1}</span><span class="sname">${e.name}</span>` +
+    `<span class="stip">${(e.cues || []).join(" · ")}</span>` +
+    `<img src="${e.gif}" alt="${e.name} demo">` +
+    (e.why ? `<span class="why">★ ${e.why}</span>` : "") + `</li>`
+  ).join("") : "";
   render();
 }
 
@@ -57,7 +69,7 @@ function render() {
   const colors = { ready: "--ready", work: "--work", rest: "--rest", roundRest: "--rest", done: "--rest" };
   document.documentElement.style.setProperty("--phase", `var(${colors[step.type]})`);
 
-  els.round.innerHTML = `<small>Round</small>${step.round} / ${workout.rounds}`;
+  els.round.innerHTML = `<small>${workout.mode === "stations" ? "Lap" : "Round"}</small>${step.round} / ${workout.rounds}`;
   els.start.textContent = running ? "Pause" : (stepIndex === 0 && remainingMs === step.dur * 1000 ? "Start" : "Go");
   els.start.classList.toggle("pause", running);
 
@@ -73,11 +85,13 @@ function render() {
     return;
   }
 
+  if (workout.mode === "stations") { renderStations(step); return; }
+
   const labels = { ready: "Get ready", work: "Work", rest: "Rest · up next", roundRest: `Round break · round ${step.round} next` };
   els.phaseLabel.textContent = labels[step.type];
   els.exName.textContent = ex.name;
   if (els.gif.getAttribute("src") !== ex.gif) { els.gif.src = ex.gif; els.gif.alt = `${ex.name} demo`; }
-  els.cues.innerHTML = (ex.cues || []).map((c) => `<li>${c}</li>`).join("");
+  els.cues.innerHTML = (ex.cues || []).map((c) => `<li>${c}</li>`).join("") + (ex.why ? `<li class="why">★ ${ex.why}</li>` : "");
 
   const secs = Math.ceil(remainingMs / 1000);
   els.time.textContent = secs;
@@ -90,6 +104,22 @@ function render() {
     : "Get in position.";
 
   markList(step.ex, false, step);
+}
+
+// Station mode screen: everyone is working at once, so show the rotation instead of one exercise
+function renderStations(step) {
+  const total = workout.exercises.length;
+  const rotation = step.type === "work" ? step.ex + 1 : null;
+  els.round.innerHTML = `<small>Lap</small>${step.round} / ${workout.rounds}`;
+  els.phaseLabel.textContent = { ready: "Get ready", work: "Work", rest: "Rotate ↻", roundRest: "Rotate ↻" }[step.type];
+  els.exName.textContent = step.type === "ready" ? "Go to your station"
+    : rotation ? `Rotation ${rotation} of ${total}`
+    : "Move to the next number";
+  els.time.textContent = Math.ceil(remainingMs / 1000);
+  els.bar.style.strokeDashoffset = RING * (1 - remainingMs / (step.dur * 1000));
+  els.next.innerHTML = step.type === "work"
+    ? "Quality reps! When it beeps, rotate."
+    : `Station ${total} goes to station 1.`;
 }
 
 function markList(current, allDone, step) {

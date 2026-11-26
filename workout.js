@@ -15,6 +15,22 @@
 
 const WORKOUTS = [
   {
+    name: "Strength Stations",
+    mode: "stations",   // "stations" = everyone works at once, then rotates to the next number
+    work: 40,           // 40 seconds of work
+    rest: 20,           // 20 seconds to rotate
+    roundRest: 20,      // also 20 seconds to rotate between laps
+    rounds: 2,          // go around twice (about 12 minutes)
+    exercises: [
+      { name: "Jump Rope",             gif: "gifs/jump-rope.svg",            cues: ["Stay in place, steady rhythm", "No room? Do \"air rope\""] },
+      { name: "Goblet Squats",         gif: "gifs/goblet-squats.svg",        cues: ["Bell at chest", "Sit back, chest up"] },
+      { name: "Band Rows",             gif: "gifs/band-rows.svg",            cues: ["Stand on the band, flat back", "Pull handles to hips"], why: "Builds the back that protects throwing arms" },
+      { name: "Push-Ups",              gif: "gifs/push-ups.svg",             cues: ["Knees are fine", "Quality reps"] },
+      { name: "Kettlebell Deadlifts",  gif: "gifs/kettlebell-deadlifts.svg", cues: ["Push hips back, flat back", "Stand tall"], why: "Hip power for hitting and throwing" },
+      { name: "Band Pull-Aparts",      gif: "gifs/band-pull-aparts.svg",     cues: ["Straight arms at chest height", "Squeeze shoulder blades"], why: "Arm care" }
+    ]
+  },
+  {
     name: "Full Body Blast",
     work: 40,
     rest: 20,
