@@ -61,16 +61,4 @@ const WORKOUTS = [
       { name: "Mountain Climbers", gif: "gifs/mountain-climbers.svg", cues: ["Hips low", "Drive knees to chest"] }
     ]
   },
-  {
-    name: "Quick Warm-Up",
-    work: 30,
-    rest: 10,
-    roundRest: 30,
-    rounds: 2,
-    exercises: [
-      { name: "Jumping Jacks", gif: "gifs/jumping-jacks.svg", cues: ["Easy pace to start"] },
-      { name: "High Knees",    gif: "gifs/high-knees.svg",    cues: ["Light on your toes"] },
-      { name: "Squats",        gif: "gifs/squats.svg",        cues: ["Slow and controlled"] }
-    ]
-  }
 ];
